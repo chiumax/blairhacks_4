@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import YouTube from "react-youtube";
+//import YouTube from "react-youtube";
+import ReactPlayer from "react-player";
 import axios from "axios";
 
 import Description from "./Description";
@@ -19,6 +20,9 @@ class Content extends Component {
     outputTime: false
   };
 
+  componentDidMount = () => {
+    console.log("mounted!");
+  };
   onToggleMessage = () => {
     if (this.state.messageDisplay && this.state.message.length > 0) {
       if (this.state.imgSub) {
@@ -89,10 +93,16 @@ class Content extends Component {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
     console.log(match && match[7].length == 11 ? match[7] : false);
-    this.setState({
-      vidId: match && match[7].length == 11 ? match[7] : false,
-      imgSub: false
-    });
+    this.setState(
+      {
+        vidId: match && match[7].length == 11 ? match[7] : false,
+        imgSub: false
+      },
+      () => {
+        //player.playVideo();
+        console.log(this.state.link);
+      }
+    );
   };
 
   onImageChange = event => {
@@ -126,7 +136,8 @@ class Content extends Component {
         console.log("request over");
         const data = response.data;
 
-        console.log(data);
+        console.log(data.data);
+        this.setState({ outputTime: data.data });
       });
   };
 
@@ -144,12 +155,16 @@ class Content extends Component {
         console.log("request over");
         const data = response.data;
         console.log(data);
+        //outputImage
         this.setState({
-          outputImage: `data:image/png;base64,${data}`
+          image: `data:image/png;base64,${data}`
         });
       });
   };
 
+  ref = player => {
+    this.player = player;
+  };
   render() {
     return (
       <>
@@ -202,7 +217,14 @@ class Content extends Component {
           {!!this.state.vidId ? (
             <>
               <div className="imageWrapper">
-                <YouTube videoId={this.state.vidId}></YouTube>
+                <ReactPlayer
+                  url={this.state.link}
+                  ref={this.ref}
+                  controls
+                  width="1280px"
+                  height="720px"
+                ></ReactPlayer>
+                {/* <YouTube videoId={this.state.vidId}></YouTube> */}
               </div>
               <div className="linkSubmitWrapper">
                 <div>Image Upload</div>
@@ -288,3 +310,4 @@ class Content extends Component {
 }
 
 export default Content;
+//opts={{ playerVars: { autoplay: 1 } }}
