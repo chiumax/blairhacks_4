@@ -4,14 +4,24 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .linkSubmitWrapper {
   display: flex;
   flex-direction: column;
-  align-items: left;
 }
 
+.mainInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/// search bar
 $background-color: #2a2e37;
 $search-bg-color: #242628;
 $icon-color: #fff;

@@ -23,7 +23,7 @@ class App extends Component {
         { opacity: 0, translateY: 10 },
         { opacity: 0, translateY: 10 }
       ],
-      duration: 6000
+      duration: 7000
     });
     anime({
       targets: ".footerWrapper",
@@ -32,12 +32,12 @@ class App extends Component {
         { opacity: 0, translateY: 10 },
         { opacity: 0, translateY: 10 }
       ],
-      duration: 6000
+      duration: 7000
     });
     anime({
       targets: ".logo",
       opacity: 1,
-      duration: "5000",
+      duration: "6000",
       keyframes: [
         {
           translateX: "43vw",
@@ -58,7 +58,7 @@ class App extends Component {
     anime({
       targets: ".logoText",
 
-      duration: "5000",
+      duration: "6000",
       keyframes: [
         {
           translateX: "39.5vw",
@@ -79,7 +79,7 @@ class App extends Component {
     });
     anime({
       targets: ".lds-ellipsis",
-      duration: "4000",
+      duration: "5000",
       keyframes: [
         {
           opacity: 0,
