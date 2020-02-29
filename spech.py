@@ -10,12 +10,22 @@ import subprocess
 import os
 
 def tts(link,PHRASE):
-    if(link!="notalink"):
-        try:
-            os.remove('audio.mp3')
-            os.remove('audio.wav')
-        except:
-            pass
+    try:
+        os.remove('audio.mp3')
+        os.remove('audio.wav')
+    except:
+        pass
+    f=open("text.txt",'r')
+    lines=f.readlines()
+    print(lines[1])
+    phrase=PHRASE.split()
+    trans=''
+    times=[]
+    timeret=[]
+    if(lines[0].rstrip()==link.rstrip()):
+        times=lines[1][1:-1].split(",")
+        trans=lines[2]            
+    else:
         ydl_opts = {
             'fixup': 'detect_or_warn',
             'extractaudio' : True,      # only keep the audio
@@ -36,31 +46,28 @@ def tts(link,PHRASE):
 
         subprocess.call(['ffmpeg', '-i', 'audio.mp3', 'audio.wav'])
 
-    authenticator = IAMAuthenticator('zyfxQXtG2Ud8dgI5DFncedpyOisZw8srm5tDt1JWyTF1')
-    speech_to_text = SpeechToTextV1(
-       authenticator=authenticator
-    )
-    speech_to_text.set_service_url('https://api.us-east.speech-to-text.watson.cloud.ibm.com/instances/6aa6ac8c-41b5-46fe-b6ab-30ebd53cc8cf')
+        authenticator = IAMAuthenticator('zyfxQXtG2Ud8dgI5DFncedpyOisZw8srm5tDt1JWyTF1')
+        speech_to_text = SpeechToTextV1(
+           authenticator=authenticator
+        )
+        speech_to_text.set_service_url('https://api.us-east.speech-to-text.watson.cloud.ibm.com/instances/6aa6ac8c-41b5-46fe-b6ab-30ebd53cc8cf')
 
-    r = sr.Recognizer()
+        r = sr.Recognizer()
 
-    with open('audio.wav', 'rb') as audio_file:
-        speech_recognition_results = speech_to_text.recognize(
-            audio=audio_file,
-            content_type='audio/wav',
-            timestamps=True,
-        ).get_result()
+        with open('audio.wav', 'rb') as audio_file:
+            speech_recognition_results = speech_to_text.recognize(
+                audio=audio_file,
+                content_type='audio/wav',
+                timestamps=True,
+            ).get_result()
 
-    d = speech_recognition_results
-    phrase=PHRASE.split()
-    trans=''
-    times=[]
-    timeret=[]
-    for part in d['results']:
-        want=part['alternatives']
-        times+=want[0]['timestamps']
-        trans+=want[0]['transcript']
-    print(times)
+        d = speech_recognition_results
+        
+        for part in d['results']:
+            want=part['alternatives']
+            times+=want[0]['timestamps']
+            trans+=want[0]['transcript']
+
     for i in range(len(times)-len(phrase)+1):   
         j=0
         good=True
@@ -71,6 +78,10 @@ def tts(link,PHRASE):
                 break
             if(j==len(phrase)):
                timeret.append(math.floor(times[i][1]))
+    f.close()
+    f=open("text.txt","w")
+    f.write(link+"\n"+str(times)+"\n"+trans)
+    f.close()
     return timeret
 
 

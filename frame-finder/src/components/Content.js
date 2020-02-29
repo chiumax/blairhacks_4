@@ -17,7 +17,8 @@ class Content extends Component {
     imgSub: false,
     imageFile: false,
     outputImage: false,
-    outputTime: false
+    outputTime: [],
+    genTimeTable: ""
   };
 
   componentDidMount = () => {
@@ -137,7 +138,9 @@ class Content extends Component {
         const data = response.data;
 
         console.log(data.data);
-        this.setState({ outputTime: data.data });
+        this.setState({ outputTime: data.data }, () => {
+          this.genTimeStamps();
+        });
       });
   };
 
@@ -160,6 +163,36 @@ class Content extends Component {
           image: `data:image/png;base64,${data}`
         });
       });
+  };
+
+  genTimeStamps = () => {
+    let i = 0;
+    let temp = [<div>Timestamps where ${this.state.message} was heard.</div>];
+    for (i = 0; i < this.state.outputTime.length; i++) {
+      let curr = this.state.outputTime[i];
+      temp.push(
+        <div>
+          <a
+            onClick={() => {
+              this.jumpTo(curr);
+            }}
+          >
+            {curr} Seconds
+          </a>
+        </div>
+      );
+      console.log(temp);
+    }
+    console.log(temp);
+    // this.setState({
+    //   genTimeTable: temp
+    // });
+    return temp;
+  };
+
+  jumpTo = time => {
+    console.log(time);
+    this.player.seekTo(time, "seconds");
   };
 
   ref = player => {
@@ -291,6 +324,9 @@ class Content extends Component {
           ) : (
             <div></div>
           )}
+        </div>
+        <div className="timeStampWrapper">
+          {this.state.outputTime.length > 0 ? this.genTimeStamps() : ""}
         </div>
         {!!this.state.outputImage ? (
           <div className="imageWrapper">
