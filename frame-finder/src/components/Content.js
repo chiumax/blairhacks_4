@@ -19,9 +19,10 @@ class Content extends Component {
   };
 
   handleChange = event => {
+    event.persist();
     console.log(event);
     this.setState(prevState => ({
-      link: event.value
+      link: event.target.value
     }));
   };
 
