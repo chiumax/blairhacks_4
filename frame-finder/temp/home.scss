@@ -1,0 +1,152 @@
+.HomeScreen {
+  background-image:url("../images/tweetmap-point40.png");
+  height: 100vh;
+  background-repeat: repeat-x;
+  object-fit: scale-down;
+  background-size: 100vw 100vh;
+   -webkit-backdrop-filter: blur(5px); // Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+
+  backdrop-filter: blur(5px); // No one supports non prefixed yet
+  z-index: 1;
+}
+.bluetext{
+  color:#1DA1F2;;
+}
+.HomeBack {
+  background: darken(grey,30%);
+  align-content: center;
+}
+.HeaderTitle {
+  padding-top: 15vh;
+  color: white;
+   font-size: $l-size;
+   margin: 0;
+}
+.HeaderHead{
+  margin: 0;
+}
+.LogoImg{
+  height: $xl-size;
+  width: $xl-size;
+  padding-top: 1.5rem;
+}
+
+.FlexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.HomeForm {
+  margin-top:10vh;
+  overflow: none;
+  position:relative;
+  z-index: 99;
+  text-align: center;
+}
+.HomeInput {
+    padding:5px 0 15px 25px; 
+    border:2px solid #ccc;
+    width: 50vw; 
+    font-size: $l-size;
+    color: #1DA1F2;
+    border-radius: 40px;
+}
+.HomeText {
+  vertical-align: bottom;
+  font-size: $xl-size;
+  color: #1DA1F2;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.WarnText {
+  margin:0;
+  font-size: $s-size;
+  color: red;
+  font-weight:bold;
+}
+.FormFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.FormButt {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: transparent;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 40px;
+  color: #fff;
+  font-weight: 700;
+  outline: 0 !important;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+.ReturnButt {
+  margin-left:2rem;
+  cursor: pointer;
+}
+.ReturnText {
+  margin-left: 2rem;
+}
+.about{
+  background: white;
+}
+.downArrow{
+  margin-top:23vh;
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  align-self: center;
+  position: relative;
+}
+.wrapDown{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutCol{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+}
+.aboutRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+.techImg{
+  height: 30rem;
+  width:17rem;
+  border-radius: 5px;
+
+}
+.tech{
+    padding-left:1.5rem;
+  padding-right:1.5rem;
+  flex-basis: 35vw;
+}
+
+.techUsed{
+  font-size: $l-size;
+  font-weight: bold;
+  padding-left: 1rem;
+}
+.author {
+  background:#1DA1F2;
+  color: white;
+}
+.authorSep {
+   padding-left:1rem;
+  padding-right:1rem;
+
+}
+.boldSub{
+  font-weight:bold;
+}
