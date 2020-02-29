@@ -1,0 +1,33 @@
+.descWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+}
+
+.descSeparator {
+  border-bottom: 3px solid black;
+  //position: absolute;
+  top: 7rem;
+  left: 3rem;
+  width: 48rem;
+}
+
+.descLogo {
+  max-width: 200px;
+  min-width: 200px;
+  max-height: 200px;
+  min-height: 200px;
+}
+
+.descSection {
+  margin-top: 3rem;
+  width: 150%;
+  text-align: left;
+}
+.descHeading {
+  font-size: 5rem;
+  font-family: Raleway;
+  margin-bottom: 3rem;
+}

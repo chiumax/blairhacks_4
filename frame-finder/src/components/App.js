@@ -23,7 +23,7 @@ class App extends Component {
         { opacity: 0, translateY: 10 },
         { opacity: 0, translateY: 10 }
       ],
-      duration: 7000
+      duration: 6700
     });
     anime({
       targets: ".footerWrapper",
@@ -32,13 +32,25 @@ class App extends Component {
         { opacity: 0, translateY: 10 },
         { opacity: 0, translateY: 10 }
       ],
-      duration: 7000
+      duration: 6700
     });
     anime({
       targets: ".logo",
       opacity: 1,
       duration: "6000",
       keyframes: [
+        {
+          translateX: "43vw",
+          translateY: "48vh",
+          scale: "2",
+          opacity: 1
+        },
+        {
+          translateX: "43vw",
+          translateY: "48vh",
+          scale: "2",
+          opacity: 1
+        },
         {
           translateX: "43vw",
           translateY: "48vh",
@@ -58,8 +70,18 @@ class App extends Component {
     anime({
       targets: ".logoText",
 
-      duration: "6000",
+      duration: "5700",
       keyframes: [
+        {
+          translateX: "39.5vw",
+          translateY: "38vh",
+          scale: "3"
+        },
+        {
+          translateX: "39.5vw",
+          translateY: "38vh",
+          scale: "3"
+        },
         {
           translateX: "39.5vw",
           translateY: "38vh",
@@ -79,13 +101,19 @@ class App extends Component {
     });
     anime({
       targets: ".lds-ellipsis",
-      duration: "5000",
+      duration: "6500",
       keyframes: [
         {
           opacity: 0,
           translateX: "35vw",
           translateY: "60vh",
           scale: "1.3"
+        },
+        {
+          translateX: "35vw",
+          translateY: "60vh",
+          scale: "1.3",
+          opacity: 1
         },
         {
           translateX: "35vw",
