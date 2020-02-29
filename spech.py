@@ -20,7 +20,7 @@ def tts(link,PHRASE):
             'fixup': 'detect_or_warn',
             'extractaudio' : True,      # only keep the audio
             'audioformat' : "mp3",
-            'outtmpl': 'C:/Users/frenc/Documents/Hackathons/BlairHacks2019/audio.mp3',
+            'outtmpl': 'C:/Users/frenc/Documents/GitHub/blairhacks_4/audio.mp3',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
@@ -28,7 +28,7 @@ def tts(link,PHRASE):
             }],
             'prefer_ffmpeg': True,  
             'format': 'bestaudio/best',  
-            'output' : "C:/Users/frenc/Documents/Hackathons/BlairHacks2019/",  
+            'output' : "C:/Users/frenc/Documents/GitHub/blairhacks_4/",  
         }
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:

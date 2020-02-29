@@ -1,20 +1,23 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
 import image
-import spech
+import spech 
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/ptt", methods=['POST'])
 def ptt():
     if(request.method == "POST"):
         result = request.json
-
+        #same video different word use notalink
         link = result['link']
         phrase = result['phrase']
-
-        return spech.stt(link,phrase)        
+        print(link)
+        print(phrase)
+        return {"data":spech.tts(link,phrase)}
 
 
 
@@ -25,7 +28,10 @@ def stt():
 
         b64 = result['picture']
         phrase = result['phrase']
-        return image.findTextInImage(b64,phrase)
+
+        returnval = image.findTextInImage(b64, phrase)
+        print (returnval)
+        return returnval
 
 
 if __name__ == "__main__":

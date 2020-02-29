@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import YouTube from "react-youtube";
+import axios from "axios";
 
 import Description from "./Description";
 
@@ -12,12 +13,19 @@ class Content extends Component {
     message: "",
     image: false,
     vidId: false,
-    imgSub: false
+    imgSub: false,
+    imageFile: false,
+    outputImage: false,
+    outputTime: false
   };
 
   onToggleMessage = () => {
-    if (this.state.messageDisplay) {
-      //
+    if (this.state.messageDisplay && this.state.message.length > 0) {
+      if (this.state.imgSub) {
+        this.requestImage();
+      } else if (this.state.vidId) {
+        this.requestYoutube();
+      }
     }
 
     this.setState(prevState => ({
@@ -38,6 +46,8 @@ class Content extends Component {
 
   onToggleUpload = () => {
     if (this.state.fileDisplay && this.state.image) {
+      console.log(this.state.image);
+      console.log(this.state.imageFile);
       this.setState(prevState => ({
         vidId: false,
         imgSub: true
@@ -87,10 +97,57 @@ class Content extends Component {
 
   onImageChange = event => {
     if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = () => {
+        console.log(reader.result.substring(0, reader.result.indexOf(",")));
+        this.setState({
+          imageFile: reader.result.substring(reader.result.indexOf(","))
+        });
+      };
+
       this.setState({
         image: URL.createObjectURL(event.target.files[0])
       });
     }
+  };
+
+  requestYoutube = () => {
+    console.log("request sent");
+    axios
+      .post("http://127.0.0.1:5000/ptt", {
+        link: this.state.link,
+        phrase: this.state.message,
+        headers: {
+          "X-Content-Type-Options": "application/x-www-form-urlencoded"
+        }
+      })
+      .then(response => {
+        console.log("request over");
+        const data = response.data;
+
+        console.log(data);
+      });
+  };
+
+  requestImage = () => {
+    console.log("request image");
+    axios
+      .post("http://127.0.0.1:5000/stt", {
+        picture: this.state.imageFile,
+        phrase: this.state.message,
+        headers: {
+          "X-Content-Type-Options": "application/x-www-form-urlencoded"
+        }
+      })
+      .then(response => {
+        console.log("request over");
+        const data = response.data;
+        console.log(data);
+        this.setState({
+          outputImage: `data:image/png;base64,${data}`
+        });
+      });
   };
 
   render() {
@@ -178,7 +235,11 @@ class Content extends Component {
           {!!this.state.imgSub ? (
             <>
               <div className="imageWrapper">
-                <img id="target" src={this.state.image}></img>
+                <img
+                  id="target"
+                  class="imagePreview"
+                  src={this.state.image}
+                ></img>
               </div>
               <div className="linkSubmitWrapper">
                 <div>Image Upload</div>
@@ -209,6 +270,17 @@ class Content extends Component {
             <div></div>
           )}
         </div>
+        {!!this.state.outputImage ? (
+          <div className="imageWrapper">
+            <img
+              id="target"
+              class="imagePreview"
+              src={this.state.outputImage}
+            ></img>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <Description />
       </>
     );

@@ -15,9 +15,10 @@ import pytesseract
 
 def findTextInImage(s, keyPhrase):
     #   The following decides
-
+    imgdata = base64.b64decode(s)
+    
     with open("image.png", "wb") as fh:
-        fh.write(base64.decodebytes(s))
+        fh.write(imgdata)
 
     
 
@@ -131,5 +132,5 @@ def findTextInImage(s, keyPhrase):
     jpg_as_text = base64.b64encode(buffer)
     #print(jpg_as_text)
     #cap.release()
-    return jpg_as_text
+    return str(jpg_as_text)[2:-1]
 #print(findTextInImage('C:/Users/micha/Documents/testJournal.png','they should then iDentiFy'))
