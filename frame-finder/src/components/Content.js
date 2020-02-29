@@ -10,7 +10,7 @@ class Content extends Component {
     messageDisplay: false,
     link: "",
     message: "",
-    image: "",
+    image: false,
     vidId: false,
     imgSub: false
   };
@@ -31,19 +31,21 @@ class Content extends Component {
       this.youtube_parser(this.state.link);
     }
     this.setState(prevState => ({
-      searchDisplay: !prevState.searchDisplay
+      searchDisplay: !prevState.searchDisplay,
+      fileDisplay: false
     }));
   };
 
   onToggleUpload = () => {
-    if (this.state.fileDisplay) {
+    if (this.state.fileDisplay && this.state.image) {
       this.setState(prevState => ({
         vidId: false,
         imgSub: true
       }));
     }
     this.setState(prevState => ({
-      fileDisplay: !prevState.fileDisplay
+      fileDisplay: !prevState.fileDisplay,
+      searchDisplay: false
     }));
   };
 
