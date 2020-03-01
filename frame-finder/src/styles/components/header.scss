@@ -31,16 +31,17 @@
 
 .bottomBorder {
   opacity: 0;
-  border-bottom: 1px solid grey;
+  border-bottom: 3px solid grey;
   position: absolute;
-  top: 7rem;
+  top: 8rem;
   left: 3rem;
-  width: 6rem;
+  width: 9rem;
 }
 
 .logo {
-  max-height: 5rem;
+  max-height: 8rem;
 }
 
 .logoText {
+  font-size: 3rem;
 }

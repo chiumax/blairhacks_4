@@ -8,6 +8,7 @@ import youtube_dl
 import ffmpeg
 import subprocess
 import os
+import ast 
 
 def tts(link,PHRASE):
     try:
@@ -17,14 +18,13 @@ def tts(link,PHRASE):
         pass
     f=open("text.txt",'r')
     lines=f.readlines()
-    print(lines[1])
     phrase=PHRASE.split()
     trans=''
     times=[]
     timeret=[]
     if(lines[0].rstrip()==link.rstrip()):
-        times=lines[1][1:-1].split(",")
-        trans=lines[2]            
+        times=ast.literal_eval(lines[1])
+        trans=lines[2]
     else:
         ydl_opts = {
             'fixup': 'detect_or_warn',

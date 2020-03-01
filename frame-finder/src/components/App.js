@@ -42,25 +42,25 @@ class App extends Component {
         {
           translateX: "43vw",
           translateY: "48vh",
-          scale: "2",
+          scale: "1.5",
           opacity: 1
         },
         {
           translateX: "43vw",
           translateY: "48vh",
-          scale: "2",
+          scale: "1.5",
           opacity: 1
         },
         {
           translateX: "43vw",
           translateY: "48vh",
-          scale: "2",
+          scale: "1.5",
           opacity: 1
         },
         {
           translateX: "43vw",
           translateY: "48vh",
-          scale: "2",
+          scale: "1.5",
           opacity: 1
         }
       ],
@@ -73,24 +73,24 @@ class App extends Component {
       duration: "5700",
       keyframes: [
         {
-          translateX: "39.5vw",
+          translateX: "36.5vw",
           translateY: "38vh",
-          scale: "3"
+          scale: "2"
         },
         {
-          translateX: "39.5vw",
+          translateX: "36.5vw",
           translateY: "38vh",
-          scale: "3"
+          scale: "2"
         },
         {
-          translateX: "39.5vw",
+          translateX: "36.5vw",
           translateY: "38vh",
-          scale: "3"
+          scale: "2"
         },
         {
-          translateX: "39.5vw",
+          translateX: "36.5vw",
           translateY: "38vh",
-          scale: "3"
+          scale: "2"
         }
       ],
       direction: "reverse",
@@ -105,24 +105,24 @@ class App extends Component {
       keyframes: [
         {
           opacity: 0,
-          translateX: "35vw",
+          translateX: "29vw",
           translateY: "60vh",
           scale: "1.3"
         },
         {
-          translateX: "35vw",
+          translateX: "29vw",
           translateY: "60vh",
           scale: "1.3",
           opacity: 1
         },
         {
-          translateX: "35vw",
+          translateX: "29vw",
           translateY: "60vh",
           scale: "1.3",
           opacity: 1
         },
         {
-          translateX: "35vw",
+          translateX: "29vw",
           translateY: "60vh",
           scale: "1.3",
           opacity: 1

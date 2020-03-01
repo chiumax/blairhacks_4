@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 import axios from "axios";
 
 import Description from "./Description";
+import Loading from "./Loading";
 
 class Content extends Component {
   state = {
@@ -18,7 +19,8 @@ class Content extends Component {
     imageFile: false,
     outputImage: false,
     outputTime: [],
-    genTimeTable: ""
+    genTimeTable: "",
+    loading: false
   };
 
   componentDidMount = () => {
@@ -125,6 +127,9 @@ class Content extends Component {
 
   requestYoutube = () => {
     console.log("request sent");
+    this.setState({
+      loading: true
+    });
     axios
       .post("http://127.0.0.1:5000/ptt", {
         link: this.state.link,
@@ -138,7 +143,7 @@ class Content extends Component {
         const data = response.data;
 
         console.log(data.data);
-        this.setState({ outputTime: data.data }, () => {
+        this.setState({ outputTime: data.data, loading: false }, () => {
           this.genTimeStamps();
         });
       });
@@ -146,6 +151,9 @@ class Content extends Component {
 
   requestImage = () => {
     console.log("request image");
+    this.setState({
+      loading: true
+    });
     axios
       .post("http://127.0.0.1:5000/stt", {
         picture: this.state.imageFile,
@@ -160,19 +168,25 @@ class Content extends Component {
         console.log(data);
         //outputImage
         this.setState({
-          image: `data:image/png;base64,${data}`
+          image: `data:image/png;base64,${data}`,
+          loading: false
         });
       });
   };
 
   genTimeStamps = () => {
     let i = 0;
-    let temp = [<div>Timestamps where ${this.state.message} was heard.</div>];
+    let temp = [
+      <div className="noWrap smallMargin">
+        Timestamps where "{this.state.message}" was heard.
+      </div>
+    ];
     for (i = 0; i < this.state.outputTime.length; i++) {
       let curr = this.state.outputTime[i];
       temp.push(
-        <div>
+        <div className="button">
           <a
+            href="javascript:;"
             onClick={() => {
               this.jumpTo(curr);
             }}
@@ -204,7 +218,7 @@ class Content extends Component {
         <div className="mainApp">
           <div className=" mainInput">
             <div className="linkSubmitWrapper">
-              <div>Youtube Link</div>
+              <div className="noWrap">Youtube Link</div>
 
               <div
                 className={this.state.searchDisplay ? "search open" : "search"}
@@ -227,17 +241,40 @@ class Content extends Component {
               </div>
             </div>
             <div className="linkSubmitWrapper">
-              <div>Image Upload</div>
+              <div className="noWrap">Image Upload</div>
               <div
-                className={this.state.fileDisplay ? "search open" : "search"}
+                className={
+                  this.state.fileDisplay
+                    ? "search open center"
+                    : "center search"
+                }
               >
+                <label
+                  for="file-upload"
+                  className={
+                    this.state.fileDisplay
+                      ? "custom-file-upload"
+                      : "custom-file-upload opacity"
+                  }
+                >
+                  <i class="fa fa-cloud-upload"></i> Upload File
+                </label>
                 <input
+                  id="file-upload"
+                  type="file"
                   type="file"
                   accept=".png, .jpg"
                   onChange={e => {
                     this.onImageChange(e);
                   }}
-                ></input>
+                />
+                {/* <input
+                  type="file"
+                  accept=".png, .jpg"
+                  onChange={e => {
+                    this.onImageChange(e);
+                  }}
+                ></input> */}
                 <span
                   className="search-button"
                   onClick={() => this.onToggleUpload()}
@@ -259,8 +296,9 @@ class Content extends Component {
                 ></ReactPlayer>
                 {/* <YouTube videoId={this.state.vidId}></YouTube> */}
               </div>
+              {!!this.state.loading ? <Loading /> : <div></div>}
               <div className="linkSubmitWrapper">
-                <div>Image Upload</div>
+                <div className="noWrap">Text to look for</div>
                 <div
                   className={
                     this.state.messageDisplay ? "search open" : "search"
@@ -296,8 +334,9 @@ class Content extends Component {
                   src={this.state.image}
                 ></img>
               </div>
+              {!!this.state.loading ? <Loading /> : <div></div>}
               <div className="linkSubmitWrapper">
-                <div>Image Upload</div>
+                <div class="noWrap">Text to look for</div>
                 <div
                   className={
                     this.state.messageDisplay ? "search open" : "search"
@@ -326,19 +365,11 @@ class Content extends Component {
           )}
         </div>
         <div className="timeStampWrapper">
-          {this.state.outputTime.length > 0 ? this.genTimeStamps() : ""}
+          {this.state.outputTime.length > 0 && !!this.state.vidId
+            ? this.genTimeStamps()
+            : ""}
         </div>
-        {!!this.state.outputImage ? (
-          <div className="imageWrapper">
-            <img
-              id="target"
-              class="imagePreview"
-              src={this.state.outputImage}
-            ></img>
-          </div>
-        ) : (
-          <div></div>
-        )}
+
         <Description />
       </>
     );

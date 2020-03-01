@@ -25,9 +25,81 @@
   margin-top: 3rem;
   max-width: 70%;
   text-align: left;
+  margin-bottom: 3rem;
 }
 .descHeading {
   font-size: 5rem;
-  font-family: Raleway;
+  font-family: "Raleway";
   margin-bottom: 3rem;
+}
+.descText {
+  font-family: "Open Sans";
+  line-height: 3rem;
+  font-size: 2rem;
+}
+
+.noWrap {
+  font-size: 3rem;
+  font-family: "Raleway";
+  word-wrap: none;
+  min-width: 5rem;
+}
+.button {
+  margin-bottom: 4rem;
+  min-width: 10rem;
+  max-width: 10rem;
+}
+a {
+  background-color: #242628;
+  box-shadow: 0 5px 0 darken(#242628, 10%);
+  color: white;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  min-width: 10rem;
+  max-width: 10rem;
+}
+
+a:hover {
+  background-color: darken(#242628, 5%);
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+.timeStampWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.smallMargin {
+  margin-bottom: 2rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  //border: 1px solid #ccc;
+  color: white;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: "Raleway";
+  font-size: 2rem;
+}
+
+.opacity {
+  opacity: 0;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
