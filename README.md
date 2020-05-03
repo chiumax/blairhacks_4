@@ -1,6 +1,8 @@
 # blairhacks_4
 
-Blairhacks_4 was a 24 hour hackathon hostetd at Montgomery Blair High School. During that time, we (4 guys in total) built **SP**eech **IM**age Text (SPIM TEXT). It basically takes a youtube video link, processes the video, and creates a searchable video for speech. Control + F for videos. It also is able to take an image of text and uses OCR to process the text on the video
+Blairhacks_4 was a 24 hour hackathon hostetd at Montgomery Blair High School. During that time, we (4 guys in total) built **SP**eech **IM**age Text (SPIM TEXT). It basically takes a youtube video link, processes the video, and creates a searchable video for speech. Control + F for videos. It also is able to take an image of text and uses OCR to process the text on the video.
+
+**Results**: We got :2nd_place_medal: 2nd place for the event.
 
 ## Screenshots/Gif
 
